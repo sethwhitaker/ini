@@ -16,7 +16,7 @@ function encode (obj, opt) {
     opt = {
       section: opt,
       whitespace: false,
-      comments : false
+      comments: false
     }
   } else {
     opt = opt || {}
@@ -34,9 +34,9 @@ function encode (obj, opt) {
       })
     } else if (val && typeof val === 'object') {
       children.push(k)
-    } else if(k.match(/\$com\$[0-9]+/)) {
+    } else if (k.match(/\$com\$[0-9]+/)) {
       if (opt.comments) {
-          out += val + eol
+        out += val + eol
       }
     } else {
       out += safe(k) + separator + safe(val) + eol
@@ -53,7 +53,7 @@ function encode (obj, opt) {
     var child = encode(obj[k], {
       section: section,
       whitespace: opt.whitespace,
-      comments : opt.comments
+      comments: opt.comments
     })
     if (out.length && child.length) {
       out += eol
@@ -86,7 +86,7 @@ function decode (str, opt) {
   opt.comments = opt.comments === true
 
   lines.forEach(function (line, _, __) {
-   if (!line || line.match(/^\s*[;#]/)) {
+    if (!line || line.match(/^\s*[;#]/)) {
       if (opt.comments) {
         line = docKey + (docCount++) + '=' + safe(line)
       } else {
